@@ -1,12 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
+import Loadable from 'react-loadable'
+
 import './App.css';
 
+const Main = Loadable({
+  loader: () => import(/* webpackChunkName: "mainChunk" */ './Main'),
+  loading: () => <div>Loading...</div>,
+  modules: ['mainChunk']
+})
+
+
 function App() {
+  console.log('app is rendering')
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src="/images/logo.svg" className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -19,6 +29,7 @@ function App() {
           Learn React
         </a>
       </header>
+      <Main />
     </div>
   );
 }
