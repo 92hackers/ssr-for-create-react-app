@@ -1,12 +1,21 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Based on that, i add **Server Side Render** to the app.
 
 ## Available Scripts
 
-In the project directory, you can run:
+In the project root directory, you can run:
 
-### `npm start`
+### `yarn install`
 
-Runs the app in the development mode.<br>
+Install the app dependencies.
+
+### `yarn build && yarn start`
+
+Build the app firstly, and then start the server to serve the app in `Server side rendering` mode.
+
+### `yarn dev`
+
+Runs the app in the development mode, without server side render.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br>
