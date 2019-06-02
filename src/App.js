@@ -2,7 +2,7 @@ import React from 'react'
 import Loadable from 'react-loadable'
 import { connect } from 'react-redux'
 
-import { setMessage } from './store/appReducer'
+import { setMessage, setMessageAsync } from './store/appReducer'
 
 import './App.css';
 
@@ -14,16 +14,26 @@ const Main = Loadable({
 
 class App extends React.Component {
   componentDidMount() {
-    console.log('app is rendering')
-    const { message, setMessage } = this.props
+    console.log('app is mounted')
+
+    const {
+      message, setMessage,
+      data, setMessageAsync,
+    } = this.props
 
     if(!message) {
       setMessage("Hi, I'm from client!");
     }
+
+    if (!data) {
+      setMessageAsync()
+    }
   }
 
   render() {
-    const { message } = this.props
+    const { data, message } = this.props
+
+    console.log('app is rendering')
 
     return (
       <div className="App">
@@ -41,7 +51,9 @@ class App extends React.Component {
             Learn React
           </a>
         </header>
-        <h1>{message}</h1>
+        <h1>{`just message: ${message}`}</h1>
+        <hr />
+        <h1>{`豆瓣 pip data: ${data}`}</h1>
         <Main />
       </div>
     )
@@ -50,10 +62,12 @@ class App extends React.Component {
 
 const mapDispatchToProps = ({
   setMessage,
+  setMessageAsync,
 })
 
 const mapStateToProps = ({ app }) => ({
   message: app.message,
+  data: app.data,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

@@ -1,5 +1,5 @@
 /**
- * Server renderer, for rendering react app
+ * Server renderer, used to render react app
  * 
  */
 
