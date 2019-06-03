@@ -1,13 +1,18 @@
 import React from 'react'
 import Loadable from 'react-loadable'
 import { connect } from 'react-redux'
+import { Link, Switch, Route } from "react-router-dom"
 
-import { setMessage, setMessageAsync } from './store/appReducer'
+import { setMessage, setMessageAsync } from '../../store/appReducer'
 
-import './App.css';
+import Home from "../Home"
+import About from "../About"
+import Contact from "../Contact"
+
+import './App.css'
 
 const Main = Loadable({
-  loader: () => import(/* webpackChunkName: "mainChunk" */ './Main'),
+  loader: () => import(/* webpackChunkName: "mainChunk" */ '../Main'),
   loading: () => <div>Loading...</div>,
   modules: ['mainChunk']
 })
@@ -40,7 +45,7 @@ class App extends React.Component {
         <header className="App-header">
           <img src="/images/logo.svg" className="App-logo" alt="logo" />
           <p>
-            Edit <code>src/App.js</code> and save to reload.
+            Create React App with Server Side Rendering support
           </p>
           <a
             className="App-link"
@@ -55,6 +60,17 @@ class App extends React.Component {
         <hr />
         <h1>{`豆瓣 pip data: ${data}`}</h1>
         <Main />
+        <div>
+          <Link to="/home">Home</Link>
+          <Link to="/about">About</Link>
+          <Link to="/contact">Contact</Link>
+        </div>
+        <hr />
+        <Switch>
+          <Route path="/home" exact component={ Home } />
+          <Route path="/about" exact component={ About } />
+          <Route path="/contact" exact component={ Contact } />
+        </Switch>
       </div>
     )
   }

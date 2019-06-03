@@ -1,10 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider as ReduxProvider } from 'react-redux'
+import { BrowserRouter as Router } from "react-router-dom"
 
 import './index.css'
 
-import App from './App'
+import App from './modules/App'
 import configureStore from './store/configureStore'
 
 import * as serviceWorker from './serviceWorker'
@@ -13,7 +14,9 @@ const store = configureStore(window.REDUX_STATE || {})
 
 const AppBundle = (
   <ReduxProvider store={store}>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </ReduxProvider>
 )
 

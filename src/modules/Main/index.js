@@ -1,3 +1,7 @@
+/**
+ * Main Component
+ */
+
 import React from 'react'
 
 export default () => (

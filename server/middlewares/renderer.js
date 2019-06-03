@@ -9,11 +9,12 @@ import fs from 'fs'
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import { Provider as ReduxProvider } from 'react-redux'
+import { StaticRouter } from "react-router-dom"
 
 import Loadable from 'react-loadable'
 
 // import our main App component
-import App from '../../src/App';
+import App from '../../src/modules/App';
 
 const renderer = store => (req, res, next) => {
   // point to the html file created by CRA's build tool
@@ -21,20 +22,23 @@ const renderer = store => (req, res, next) => {
 
   const reduxState = JSON.stringify(store.getState())
 
+  const modules = []
+  const context = {}
+
   fs.readFile(htmlFilePath, 'utf8', (err, htmlData) => {
     if (err) {
       console.error('err', err);
       return res.status(404).end()
     }
 
-    const modules = []
-
     // render the app as a string
     const html = ReactDOMServer.renderToString(
       <Loadable.Capture report={m => modules.push(m)}>
-        <ReduxProvider store={store}>
-          <App/>
-        </ReduxProvider>
+        <StaticRouter context={context} location={req.url}>
+          <ReduxProvider store={store}>
+            <App/>
+          </ReduxProvider>
+        </StaticRouter>
       </Loadable.Capture>
     );
 

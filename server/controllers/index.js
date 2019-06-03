@@ -19,7 +19,7 @@ const actionIndex = (req, res, next) => {
   serverRenderer(store)(req, res, next)
 }
 
-router.use('^/$', actionIndex)
+router.use('^/*$', actionIndex)
 
 router.use(express.static(
   path.resolve(__dirname, '..', '..', 'build'),
