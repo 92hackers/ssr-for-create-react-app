@@ -39,6 +39,7 @@ class App extends React.Component {
     const { data, message } = this.props
 
     console.log('app is rendering')
+    console.log(data)
 
     return (
       <div className="App">
@@ -47,24 +48,17 @@ class App extends React.Component {
           <p>
             Create React App with Server Side Rendering support
           </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
         </header>
         <h1>{`just message: ${message}`}</h1>
         <hr />
-        <h1>{`豆瓣 pip data: ${data}`}</h1>
+        <h1>{`Data fetched from remote api: ${data && data.url}`}</h1>
         <Main />
-        <div>
+
+        <nav>
           <Link to="/home">Home</Link>
           <Link to="/about">About</Link>
           <Link to="/contact">Contact</Link>
-        </div>
+        </nav>
         <hr />
         <Switch>
           <Route path="/home" exact component={ Home } />

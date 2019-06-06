@@ -28,17 +28,15 @@ export const setMessage = messageText => ({
 })
 
 export const setMessageAsync = () => dispatch => {
-  const url = 'http://pypi.doubanio.com/'
+  const url = 'https://hacker-news.firebaseio.com/v0/item/8863.json?print=pretty'
 
-  console.log('Request async data from remote api')
+  console.log('Requesting async data from remote api')
 
   axios.get(url)
     .then((data) => {
-      console.log('response: ', data)
-
       dispatch({
         type: 'SET_MESSAGE_ASYNC',
-        data,
+        data: data.data,
       })
     })
     .catch((e) => {

@@ -10,6 +10,5 @@ export default () => (
     <section>
       Main Content
     </section>
-    <aside>Side bar</aside>
   </main>
 )

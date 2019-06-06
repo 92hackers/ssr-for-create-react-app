@@ -5,7 +5,7 @@
 import express from 'express'
 import Loadable from 'react-loadable'
 
-import indexController from './controllers'
+import router from './router'
 
 
 // init
@@ -15,7 +15,7 @@ const PORT = 4000
 const app = express()
 
 // 路由挂载
-app.use(indexController)
+app.use(router)
 
 // 监听端口
 const handleListen = (error) => {
