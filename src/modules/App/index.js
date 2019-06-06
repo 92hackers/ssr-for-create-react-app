@@ -1,13 +1,14 @@
 import React from 'react'
 import Loadable from 'react-loadable'
 import { connect } from 'react-redux'
-import { Link, Switch, Route } from "react-router-dom"
+import { withRouter, Link, Switch, Route } from "react-router-dom"
 
 import { setMessage, setMessageAsync } from '../../store/appReducer'
 
 import Home from "../Home"
 import About from "../About"
 import Contact from "../Contact"
+import Root from '../Root'
 
 import './App.css'
 
@@ -41,6 +42,8 @@ class App extends React.Component {
     console.log('app is rendering')
     console.log(data)
 
+    console.log(this.props)
+
     return (
       <div className="App">
         <header className="App-header">
@@ -61,9 +64,10 @@ class App extends React.Component {
         </nav>
         <hr />
         <Switch>
-          <Route path="/home" exact component={ Home } />
-          <Route path="/about" exact component={ About } />
-          <Route path="/contact" exact component={ Contact } />
+          <Route path="/home" component={ Home } />
+          <Route path="/about" component={ About } />
+          <Route path="/contact" component={ Contact } />
+          <Route path="/" exact component={ Root } />
         </Switch>
       </div>
     )
@@ -80,5 +84,5 @@ const mapStateToProps = ({ app }) => ({
   data: app.data,
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
 

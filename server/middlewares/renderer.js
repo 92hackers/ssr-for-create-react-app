@@ -22,6 +22,9 @@ const renderer = store => (req, res, next) => {
 
   const reduxState = JSON.stringify(store.getState())
 
+  // Pass current url into react router
+  const location = req.originalUrl
+
   const modules = []
   const context = {}
 
@@ -34,7 +37,7 @@ const renderer = store => (req, res, next) => {
     // render the app as a string
     const html = ReactDOMServer.renderToString(
       <Loadable.Capture report={m => modules.push(m)}>
-        <StaticRouter context={context} location={req.url}>
+        <StaticRouter context={context} location={location}>
           <ReduxProvider store={store}>
             <App/>
           </ReduxProvider>

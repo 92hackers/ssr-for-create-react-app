@@ -7,7 +7,6 @@ import Loadable from 'react-loadable'
 
 import router from './router'
 
-
 // init
 const PORT = 4000
 

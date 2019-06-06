@@ -11,7 +11,7 @@ import actionIndex from './controllers/index'
 const router = express.Router()
 
 router.use(express.static(
-  path.resolve(__dirname, '..', '..', 'build'),
+  path.resolve(__dirname, '..', 'build'),
   { maxAge: '30d' },
 ))
 
